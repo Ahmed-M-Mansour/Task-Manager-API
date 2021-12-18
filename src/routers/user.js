@@ -6,7 +6,6 @@ const sharp = require('sharp')
 const {sendWelcomeEmail , sendLastEmail} = require('../emails/account') ; 
 const router = express.Router() ; 
 
-
 // create a User 
 router.post('/users' , async (req , res)=>{
     const user = new User(req.body) ;  
@@ -100,6 +99,8 @@ router.delete('/users/me' , auth , async (req , res)=>{
         res.status(500).send(e) ; 
     }
 })
+
+// for profile pic uploading 
 const upload = multer({
     limits: {
         fileSize: 1000000 
@@ -141,7 +142,5 @@ router.get('/users/:id/avatar' ,  async (req , res)=>{
             res.status(404).send() ; 
     }
 })
-
-
 
 module.exports = router ; 
